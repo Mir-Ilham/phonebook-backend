@@ -55,7 +55,7 @@ app.get('/api/persons', (request, response) => {
 })
 
 app.get('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
+  const id = request.params.id
   const person = persons.find(person => person.id === id)
   
   if (person) {
@@ -90,7 +90,7 @@ app.post('/api/persons', (request, response) => {
     })
   }
 
-  const id = Math.floor(Math.random() * 1000000000) + 1;
+  const id = String(Math.floor(Math.random() * 1000000000) + 1);
 
   const person = request.body
   person.id = id
@@ -100,7 +100,7 @@ app.post('/api/persons', (request, response) => {
 })
 
 app.delete('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
+  const id = request.params.id
   const match = persons.find(person => person.id === id)
   persons = persons.filter(person => person.id !== id)
 
