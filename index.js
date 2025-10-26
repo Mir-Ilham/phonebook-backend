@@ -12,14 +12,14 @@ app.use(express.static('dist'))
 
 morgan.token('post-data', (request) => {
   if (request.method === 'POST') {
-    return JSON.stringify(request.body);
+    return JSON.stringify(request.body)
   }
-  return ' ';
-});
+  return ' '
+})
 
-const format = ':method :url :status :res[content-length] - :response-time ms :post-data';
+const format = ':method :url :status :res[content-length] - :response-time ms :post-data'
 
-app.use(morgan(format));
+app.use(morgan(format))
 
 app.get('/info', (request, response, next) => {
   const now = new Date()
@@ -38,7 +38,7 @@ app.get('/api/persons', (request, response, next) => {
   Person.find({}).then(persons => {
     response.json(persons)
   })
-  .catch(error => next(error))
+    .catch(error => next(error))
 })
 
 app.get('/api/persons/:id', (request, response, next) => {
@@ -91,7 +91,7 @@ app.put('/api/persons/:id', (request, response, next) => {
       person.save().then((updatedPerson => {
         response.json(updatedPerson)
       }))
-      .catch(error => next(error))
+        .catch(error => next(error))
     })
     .catch(error => next(error))
 })
@@ -121,5 +121,5 @@ app.use(errorHandler)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
+  console.log(`Server running on port ${PORT}`)
 })
