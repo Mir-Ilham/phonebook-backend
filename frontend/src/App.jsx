@@ -56,7 +56,11 @@ const App = () => {
             }, 5000)
           })
           .catch(error => {
-            alert('An error occured.')
+            setMessageType('error')
+            setMessage(`${ error.response.data.error }`)
+            setTimeout(() => {
+              setMessage(null)
+            }, 5000)
           })
       }
       return
@@ -81,7 +85,11 @@ const App = () => {
         }, 5000)
       })
       .catch(error => {
-        alert('An error occured.')
+          setMessageType('error')
+          setMessage(`${ error.response.data.error }`)
+          setTimeout(() => {
+            setMessage(null)
+          }, 5000)
       })
   }
 
